@@ -21,8 +21,11 @@ function* watcherSaga() {
     //DELETE request
     yield takeEvery('DELETE_GIPHY', deleteGiphy)
 
-    //Get request for the categories
+    //GET request for the categories
     yield takeEvery('GET_CATEGORY_GIPHY', getCatGiphy)
+
+    //GET request GIPHY API
+    yield takeEvery('SEARCH_INPUT', getAPIGiphy)
 }
 
 //Generator for our GET for favorite List
@@ -33,6 +36,17 @@ function* getGiphy(action) {
         yield put({ type: 'SET_FAVORITE', payload: getGiphyResponse.data })
     } catch (error) {
         console.log('Error in GET_GIPHY generator', error)
+    }
+}
+
+//Generator for our GET to GIPHY API
+function* getAPIGiphy(action) {
+    console.log('SEARCH_INPUT was called!', action)
+    try {
+        const getGiphyResponse = yield axios.get(`api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&q$=${action.payload}`)
+        yield put({ type: 'SET_FAVORITE', payload: getGiphyResponse.data })
+    } catch (error) {
+        console.log('Error in SEARCH_INPUT generator', error)
     }
 }
 
