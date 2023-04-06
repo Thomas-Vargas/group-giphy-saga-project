@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 function GifList() {
     //import GifList from reducer
     const gifList = useSelector((store) => store.gifList);
-    console.log(gifList);
+    // console.log(gifList);
     
     return (
         <div className="gifList">
