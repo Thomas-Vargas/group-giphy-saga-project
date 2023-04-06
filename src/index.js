@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App/App';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { provider } from 'react-redux'
+import { Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 import axios from 'axios';
@@ -41,9 +41,9 @@ function* getGiphy(action) {
 
 //Generator for our GET to GIPHY API
 function* getAPIGiphy(action) {
-    console.log('SEARCH_INPUT was called!', action)
+    console.log('SEARCH_INPUT was called!', action);
     try {
-        const getGiphyResponse = yield axios.get(`api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&q$=${action.payload}&limit=20`)
+        const getGiphyResponse = yield axios.get('/api/giphy')
         yield put({ type: 'SET_GIF_LIST', payload: getGiphyResponse.data })
     } catch (error) {
         console.log('Error in SEARCH_INPUT generator', error)
