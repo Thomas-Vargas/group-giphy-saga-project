@@ -8,9 +8,9 @@ function GifList() {
     
     return (
         <div className="gifList">
-            {gifList.data[0].title ? gifList.data.map((item) => (
+            {gifList?.data && gifList.data.map((item) => (
                 <GifItem key={item.id} item={item} />
-            )):<div></div>}
+            ))}
         </div>
     )
 }
