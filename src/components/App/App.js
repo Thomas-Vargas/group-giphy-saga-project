@@ -1,4 +1,5 @@
 import React from 'react';
+import FavoritesItem from '../FavoritesItem/FavoritesItem';
 
 function App(props) {
   return (
