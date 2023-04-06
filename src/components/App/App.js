@@ -1,5 +1,6 @@
 import React from 'react';
-import FavoritesItem from '../FavoritesItem/FavoritesItem';
+// import FavoritesItem from '../FavoritesItem/FavoritesItem';
+// import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 function App(props) {
   return (
