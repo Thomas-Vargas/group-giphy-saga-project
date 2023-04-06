@@ -10,7 +10,19 @@ router.get('/', (req, res) => {
 
 // add a new favorite
 router.post('/', (req, res) => {
-  res.sendStatus(200);
+  // console.log('This is req.body', req.body)
+  let giphyItem = req.body
+  const queryText = `INSERT INTO "favorites" ("name", "url")
+  VALUES ($1, $2)`
+  pool.query(queryText, [giphyItem.title, giphyItem.images.original.url])
+  .then((result) => {
+    console.log('Successful POST request for favoriting dog images specifically')
+    res.sendStatus(201)
+  })
+  .catch((error) => {
+    console.log('Error making database query(POST) for dogs', error)
+    res.sendStatus(500)
+  })
 });
 
 // update given favorite with a category id
