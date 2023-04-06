@@ -43,8 +43,8 @@ function* getGiphy(action) {
 function* getAPIGiphy(action) {
     console.log('SEARCH_INPUT was called!', action)
     try {
-        const getGiphyResponse = yield axios.get(`api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&q$=${action.payload}`)
-        yield put({ type: 'SET_FAVORITE', payload: getGiphyResponse.data })
+        const getGiphyResponse = yield axios.get(`api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&q$=${action.payload}&limit=20`)
+        yield put({ type: 'SET_GIF_LIST', payload: getGiphyResponse.data })
     } catch (error) {
         console.log('Error in SEARCH_INPUT generator', error)
     }
@@ -117,11 +117,22 @@ const categoryList = (state = [], action) => {
     }
 }
 
+//Reducer for our CategoryList -- maybe not needed?
+const gifList = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_GIF_LIST':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 //Create storeInstance and combine our reducers
 const storeInstance = createStore(
     combineReducers({
         favoriteList,
-        categoryList
+        categoryList,
+        gifList
     }),
     applyMiddleware(sagaMiddlware, logger)
 )
