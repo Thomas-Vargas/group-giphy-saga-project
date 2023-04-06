@@ -42,8 +42,10 @@ function* getGiphy(action) {
 //Generator for our GET to GIPHY API
 function* getAPIGiphy(action) {
     console.log('SEARCH_INPUT was called!', action);
+    console.log('this is action.payload', action.payload);
     try {
-        const getGiphyResponse = yield axios.get('/api/giphy')
+        const getGiphyResponse = yield axios.get(`/api/giphy/${action.payload}`)
+        console.log('this is getGiphyResponse', getGiphyResponse.data);
         yield put({ type: 'SET_GIF_LIST', payload: getGiphyResponse.data })
     } catch (error) {
         console.log('Error in SEARCH_INPUT generator', error)
