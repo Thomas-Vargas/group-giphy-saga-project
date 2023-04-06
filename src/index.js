@@ -33,6 +33,7 @@ function* getGiphy(action) {
     console.log('GET_GIPHY was called!', action)
     try {
         const getGiphyResponse = yield axios.get('/api/favorite')
+        console.log(getGiphyResponse)
         yield put({ type: 'SET_FAVORITE', payload: getGiphyResponse.data })
     } catch (error) {
         console.log('Error in GET_GIPHY generator', error)

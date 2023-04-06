@@ -1,13 +1,10 @@
-import React from 'react';
-<<<<<<< HEAD
-// import FavoritesItem from '../FavoritesItem/FavoritesItem';
-// import { HashRouter as Router, Route, Link } from 'react-router-dom';
-=======
+import FavoritesItem from '../FavoritesItem/FavoritesItem';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import GifList from '../GifList/GifList';
 import { useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import SearchForm from '../SearchForm/SearchForm';
->>>>>>> main
+import FavoritesView from '../FavoritesView/FavoritesList';
 
 function App(props) {
 
@@ -19,8 +16,15 @@ function App(props) {
     <div>
       <h1>Giphy Search!</h1>
     </div>
-    <SearchForm />
-    <GifList />
+    <Router>
+      <Route path='/' exact>
+        <SearchForm />
+        <GifList />
+      </Route>
+      <Route path='/favorites'>
+        <FavoritesView />
+      </Route>
+    </Router>
     </>
   );
 }
