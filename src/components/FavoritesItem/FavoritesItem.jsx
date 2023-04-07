@@ -3,6 +3,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 // item passed from FavoritesList
 const FavoritesItem = ({ item }) => {
@@ -20,6 +21,13 @@ const FavoritesItem = ({ item }) => {
     setAnchorEl(null);
   };
 
+  const handleRemove = () => {
+    dispatch({
+      type: "DELETE_GIPHY",
+      payload: item.id
+    })
+  }
+
   return (
     <>
       {/* <img src={item.url} alt="" /> */}
@@ -36,6 +44,13 @@ const FavoritesItem = ({ item }) => {
         variant="contained"
       >
         Category
+      </Button>
+      <Button 
+      variant="outlined" 
+      color="error"
+      onClick={handleRemove}  
+      startIcon={<DeleteIcon />}>
+        Delete
       </Button>
       <Menu
         id="basic-menu"
