@@ -3,8 +3,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 function GifItem({ item }) {
   const dispatch = useDispatch();
-  console.log(item);
-  // TODO: add gif to favorites
+  // add gif to favorites
   const favoriteGif = (item) => {
     console.log("in favoriteGif()");
     // dispatch to sagas with gif (name and url)
@@ -17,7 +16,7 @@ function GifItem({ item }) {
   return (
     <div>
       <img src={item.images.original.url} />
-      <FavoriteIcon className="favBtn" onClick={() => favoriteGif(item)}>
+      <FavoriteIcon className="favBtn" color="danger" onClick={() => favoriteGif(item)}>
         FAVORITE
       </FavoriteIcon>
     </div>
