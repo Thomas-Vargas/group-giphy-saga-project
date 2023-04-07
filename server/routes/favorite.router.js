@@ -39,7 +39,18 @@ router.post('/', (req, res) => {
 // update given favorite with a category id
 router.put('/:favId', (req, res) => {
   // req.body should contain a category_id to add to this favorite image
-  res.sendStatus(200);
+  console.log('req.body in gif put request:', req.body);
+  const sqlText = `UPDATE "favorites" SET category_id = ${req.body.category} WHERE favorites.id = ${req.params.favId};`;
+  
+  pool.query(sqlText)
+    .then(result => {
+      res.sendStatus(201);
+    })
+    .catch(error => {
+      console.log(error);
+      res.sendStatus(500);
+    })
+
 });
 
 // delete a favorite

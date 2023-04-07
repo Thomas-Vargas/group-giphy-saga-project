@@ -79,7 +79,7 @@ function* postGiphy(action) {
 function* putGiphy(action) {
     console.log('PUT_GIPHY was called!', action)
     try {
-        yield axios.put(`/api/favorite/${action.payload}`)
+        yield axios.put(`/api/favorite/${action.payload.id}`, action.payload)
         yield put({ type: 'GET_GIPHY' })
     } catch (error) {
         console.log('Error in PUT_GIPHY generator', error)
