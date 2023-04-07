@@ -1,21 +1,29 @@
-import React from 'react';
-import GifList from '../GifList/GifList';
-import { useEffect } from "react";
-import { useDispatch } from 'react-redux';
-import SearchForm from '../SearchForm/SearchForm';
+import { HashRouter as Router, Route, Link } from "react-router-dom";
+import GifList from "../GifList/GifList";
+import SearchForm from "../SearchForm/SearchForm";
+import FavoritesView from "../FavoritesView/FavoritesList";
 
 function App(props) {
-
-  const dispatch = useDispatch();
-
-
   return (
     <>
-    <div>
-      <h1>Giphy Search!</h1>
-    </div>
-    <SearchForm />
-    <GifList />
+      <div>
+        <h1>Giphy Search!</h1>
+        <Router>
+          <Link to="/favorites">Favorites</Link>
+        </Router>
+        <Router>
+          <Link to="/">Home</Link>
+        </Router>
+      </div>
+      <Router>
+        <Route path="/" exact>
+          <SearchForm />
+          <GifList />
+        </Route>
+        <Route path="/favorites">
+          <FavoritesView />
+        </Route>
+      </Router>
     </>
   );
 }
