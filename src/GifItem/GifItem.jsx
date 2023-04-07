@@ -19,7 +19,7 @@ function GifItem({item}) {
     return(
         <div>
             <img src={item.images.original.url} />
-            {toggle ? <div>Favorited</div> : <button className="favBtn" onClick={() => favoriteGif(item)}>FAVORITE</button>}
+            <button className="favBtn" onClick={() => favoriteGif(item)}>FAVORITE</button>
         </div>
     )
 }
